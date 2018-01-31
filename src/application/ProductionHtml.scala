@@ -3,7 +3,7 @@ import library.ProductionResultat
 import library.Html
 import library.Tag
 import library.Text
-class ProductionHtml extends ProductionResultat {
+object ProductionHtml extends ProductionResultat {
   def resultat2html(l: List[(String, String)]): Html = {
     var l2 = List()
     for (e <- l)
