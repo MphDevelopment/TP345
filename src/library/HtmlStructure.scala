@@ -38,4 +38,16 @@ object ExempleHtml{
                             Tag("center",List(),List(
                             		Tag("a", List(("href","http://www.irisa.fr")),	
                             				List(Text("Lien"),Tag("img",List(),List())))))))))
+  val exemple2 = Tag("html",List(),
+                   List(Tag("head",List(),
+                            List(Tag("meta",List(("content","text/html"),("charset","iso-8859-1")),List()),
+                            		Tag("title",List(),List(Text("MyPage"))))),
+                        Tag("body",List(),List(
+                            Text("&nbsp"),
+                            Tag("center",List(),List(
+                            		Tag("a", List(("href","http://www.irisa.fr")),	
+                            				List(Text("Lien"),Tag("img",List(),List()))))),
+                            Tag("center", List(), List(
+                                Tag("b", List(), List(
+                                    Text("Bonjour monsieur le Renard. Vous êtes beau comme un lavabo !")))))))))
 }
