@@ -1,5 +1,13 @@
-package library
+package application
 import library.FiltrageHtml
+import library.And
+import library.Expression
+import library.FiltrageHtml
+import library.Html
+import library.Or
+import library.Tag
+import library.Text
+import library.Word
 
 object SearchHtml extends FiltrageHtml {
   def filtreHtml(h:Html,e:Expression):Boolean= {
