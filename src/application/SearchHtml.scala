@@ -1,4 +1,5 @@
 package application
+import org.apache.commons.lang3.StringUtils
 import library.FiltrageHtml
 import library.And
 import library.Expression
@@ -32,6 +33,8 @@ object SearchHtml extends FiltrageHtml {
    * @return true si la page contient bien le mot
    */
   private def findHtml(h:Html, w:String):Boolean= {
+    // On formate le mot en supprimant les caractères non-ascii et les espaces inutiles
+    val word = StringUtils.strip(StringUtils.stripAccents(w.toLowerCase))
     h match {
       case Tag(_, _, children) => {
         var res = false
@@ -41,7 +44,7 @@ object SearchHtml extends FiltrageHtml {
         res
       }
       // On cherche le mot sans vérifier qu'il est isolé (pas utile pour l'instant)
-      case Text(t) => t contains w
+      case Text(t) => StringUtils.stripAccents(t.toLowerCase) contains word
     }
   }
 }
