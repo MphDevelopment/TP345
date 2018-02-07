@@ -4,6 +4,10 @@ import library.Html
 import library.Tag
 import library.Text
 object ProductionHtml extends ProductionResultat {
+  /**resultat2html : A partir d'une liste (nom, url) crée le code html
+   * @param une liste de Set(String (nom), String (url))
+   * @return le code Html avec les liens cliquables correspondants.
+   */
   def resultat2html(l: List[(String, String)]): Html = {
     var l2 = List[Html]()
     for (e <- l)
