@@ -2,6 +2,9 @@ package application
 import java.io.FileWriter
 import java.util.Scanner
 import library.ExpressionParser
+import java.awt.Desktop
+import java.net.URI
+import java.io.File
 
 object Appli extends App {
   println("Recherche :")
@@ -16,4 +19,6 @@ object Appli extends App {
   try {
     file.write(text)
   } finally file.close()
+
+  Desktop.getDesktop.browse(new File("resultat.html").toURI)
 }
