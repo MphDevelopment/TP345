@@ -5,6 +5,14 @@ import library.Html
 import library.Tag
 
 object FURLs extends FiltrageURLs {
+
+  /**
+    * Renvoie la liste de tout les URLs d'annonces de VivaStreet contenu dans le document html h.
+    *
+    * @param h le document Html
+    * @return la liste des URLs d'annonces contenues dans h
+    */
+
   def filtreAnnonce(h:Html):List[String] = {
     var l: List[String] = List()
     h match {
