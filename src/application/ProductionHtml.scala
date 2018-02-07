@@ -5,12 +5,13 @@ import library.Tag
 import library.Text
 object ProductionHtml extends ProductionResultat {
   def resultat2html(l: List[(String, String)]): Html = {
-    var l2 = List()
+    var l2 = List[Html]()
     for (e <- l)
     {
-      l2.::(Tag("a", List(("href", e._2)), List(Text(e._1))))
+      l2 = l2 :+ Tag("a", List(("href", e._2)), List(Text(e._1)))
+      l2 = l2 :+ Tag("br", List(), List())
     }
-    
+
     val page = Tag("html", List(),
       List(
         Tag("head", List(),
