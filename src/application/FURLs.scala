@@ -11,9 +11,13 @@ object FURLs extends FiltrageURLs {
       case Tag(name, attributes, children) =>
         if(name == "a"){
           for( a <- attributes) {
-            if (a._1 == "href") {
-              if(a._2.startsWith("http://www.irisa.fr")){
-                l = l ::: List(a._2)
+            if(a._2.contains("classified-link")){
+              for( a <- attributes) {
+                if (a._1 == "href") {
+                  if(a._2.startsWith("http://www.vivastreet.com")){
+                    l = l ::: List(a._2)
+                  }
+                }
               }
             }
           }
