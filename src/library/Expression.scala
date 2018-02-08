@@ -3,6 +3,7 @@ package library
 import scala.util.parsing.combinator.syntactical.StdTokenParsers
 import scala.util.parsing.combinator.lexical.StdLexical
 import scala.io.StdIn._
+import org.apache.commons.lang3.StringUtils
 
 /** La case classe des expression */
 sealed trait Expression
@@ -19,7 +20,8 @@ object ExpressionParser{
     */
   def putSpaces(exp:Expression):Expression= {
     exp match {
-      case Word(w) => Word(w.replace('_', ' '))
+      // On elève également les espaces inutiles
+      case Word(w) => Word(StringUtils.strip(w.replace('_', ' ')))
       case And(e1, e2) => And(putSpaces(e1), putSpaces(e2))
       case Or(e1, e2) => Or(putSpaces(e1), putSpaces(e2))
     }
