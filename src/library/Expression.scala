@@ -36,7 +36,7 @@ object ExpressionParser{
     var rep=""
     var query:Expression= Word("")
     while (rep==""){
-      println("Donnez votre requète sous forme de mots clés et combinés avec and/or\nPar exemple: developpeur AND (rennes OR nantes) AND (python OR java)")
+      println("Donnez votre requète sous forme de mots clés et combinés avec AND/OR\n(NOTE: pas de caratères spéciaux)\nPar exemple: developpeur AND (rennes OR nantes) AND (python OR java)")
       rep = readLine()
 
       /*
