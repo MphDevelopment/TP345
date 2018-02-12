@@ -49,10 +49,10 @@ object Analyseur extends AnalysePage {
 
       lURLs = lURLs ++ filtrageURLs.filtreAnnonce(html)
     }
-    val lHtml = lURLs.distinct                         // suppression des doublons
-      .map(x => (x, {print("."); urlTools.fetch(x)}))                // liste d'URL -> liste de couples (URL, HTML)
+    val lHtml = lURLs.distinct.par                     // suppression des doublons
+      .map(x => (x, {print("."); urlTools.fetch(x)}))  // liste d'URL -> liste de couples (URL, HTML)
       .filter(x => filtrageHtml.filtreHtml(x._2, exp)) // on ne garde que les documents satisfaisant
-    lHtml.map(x => (getTitle(x._2), x._1))
+    lHtml.map(x => (getTitle(x._2), x._1)).toList
   }
 
   private def getTitle(e:Html) : String = {
