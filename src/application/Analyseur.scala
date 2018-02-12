@@ -41,14 +41,30 @@ object Analyseur extends AnalysePage {
     val filtrageHtml : FiltrageHtml = SearchHtml
 
     val localUrl = "/annonces/fr?lb=new&search=1&start_field=1&keywords="
+    val localUrl2Part1 = "/annonces/fr/t+"
+    val localUrl2Part2 = "?lb=new&search=1&start_field=1&keywords="
+    val pageMax = 3
 
     var lURLs : List[String] = List()
 
+    var fullUrl = ""
     for (r <- compileReq(exp)) {
-      val fullUrl = urlTools.combineUrls(url, localUrl+r)
-      val html = urlTools.fetch(fullUrl)
+      for(i <- (1 to pageMax)) {
+        if (i == 1) {
+          fullUrl = urlTools.combineUrls(url, localUrl + r)
+          print("Recherche \"" + r + "\". Page de résutat : 1")
+        } else {
+          // NOTE actuellement, si il n'y a moins de page de résultat que pageMax, on cherche
+          // plusieur fois la même page (mais ce n'est pas très grave)
+          fullUrl = urlTools.combineUrls(url, localUrl2Part1 + i.toString + localUrl2Part2 + r)
+          print(", " + i.toString)
+        }
 
-      lURLs = lURLs ++ filtrageURLs.filtreAnnonce(html)
+        val html = urlTools.fetch(fullUrl)
+
+        lURLs = lURLs ++ filtrageURLs.filtreAnnonce(html)
+      }
+      println()
     }
     val lHtml = lURLs.distinct.par                     // suppression des doublons
       .map(x => (x, {print("."); urlTools.fetch(x)}))  // liste d'URL -> liste de couples (URL, HTML)
