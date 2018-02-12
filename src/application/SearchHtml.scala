@@ -35,6 +35,9 @@ object SearchHtml extends FiltrageHtml {
   private def findHtml(h:Html, w:String):Boolean= {
     // On formate le mot en supprimant les caractères non-ascii et les espaces inutiles
     val word = StringUtils.strip(StringUtils.stripAccents(w.toLowerCase))
+    // On crée une regex
+    val wordRegex = ("\\b" + word + "\\b").r
+
     h match {
       case Tag(_, _, children) => {
         var res = false
@@ -43,8 +46,8 @@ object SearchHtml extends FiltrageHtml {
         }
         res
       }
-      // On cherche le mot sans vérifier qu'il est isolé (pas utile pour l'instant)
-      case Text(t) => StringUtils.stripAccents(t.toLowerCase) contains word
+      // On cherche le mot (c'est dégeu mais pour des raisons inconnues ca ne marche pas avec un simple match)
+      case Text(t) => wordRegex.findFirstIn(StringUtils.stripAccents(t.toLowerCase)).isDefined
     }
   }
 }
