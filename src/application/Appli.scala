@@ -7,7 +7,6 @@ import java.net.URI
 import java.io.File
 
 object Appli extends App {
-  println("Recherche :")
   val recherche = ExpressionParser.readExp
 
   //recherche2url dans l'analyseur.

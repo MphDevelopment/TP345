@@ -57,9 +57,6 @@ object ExpressionParser{
     On remet les espaces
      */
     query = putSpaces(query)
-
-    // TODO debug
-    println(query)
     query
   }
 
