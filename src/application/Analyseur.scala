@@ -16,7 +16,8 @@ object Analyseur extends AnalysePage {
     */
   def compileReq(exp:Expression) : List[String] = {
     exp match {
-      case Word(w) => List(w)
+      // On remplace les espaces par des +
+      case Word(w) => List(w.replace(' ', '+'))
       case Or(e1,e2) => compileReq(e1)++compileReq(e2)
       case And(e1,e2) => {
         var l = List[String]()
