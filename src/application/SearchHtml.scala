@@ -33,10 +33,8 @@ object SearchHtml extends FiltrageHtml {
    * @return true si la page contient bien le mot
    */
   private def findHtml(h:Html, w:String):Boolean= {
-    // On formate le mot en supprimant les caractères non-ascii et les espaces inutiles
-    val word = StringUtils.strip(StringUtils.stripAccents(w.toLowerCase))
     // On crée une regex
-    val wordRegex = ("\\b" + word + "\\b").r
+    val wordRegex = ("\\b" + w + "\\b").r
 
     h match {
       case Tag(_, _, children) => {

@@ -21,7 +21,7 @@ object ExpressionParser{
   def putSpaces(exp:Expression):Expression= {
     exp match {
       // On elève également les espaces inutiles
-      case Word(w) => Word(StringUtils.strip(w.replace('_', ' ')))
+      case Word(w) => Word(StringUtils.strip(StringUtils.strip(StringUtils.stripAccents(w.replace('_',' ').toLowerCase))))
       case And(e1, e2) => And(putSpaces(e1), putSpaces(e2))
       case Or(e1, e2) => Or(putSpaces(e1), putSpaces(e2))
     }
